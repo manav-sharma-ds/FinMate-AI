@@ -7,3 +7,4 @@ __pycache__/
 *.pyd
 .DS_Store
 database/finmate.db
+models/expense_prediction_model.pkl
