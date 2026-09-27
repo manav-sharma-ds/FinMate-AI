@@ -1,0 +1,378 @@
+/* ==========================================================
+   FINMATE AI — GLOBAL DESIGN SYSTEM
+   Single authoritative stylesheet for the whole application.
+   Loaded once from app.py. Page files should only add CSS
+   that is unique to that page — not repeat what's here.
+========================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap');
+
+:root {
+    --fm-ink: #0B1220;
+    --fm-text: #334155;
+    --fm-text-secondary: #5B6472;
+    --fm-text-muted: #94A0AE;
+
+    --fm-primary: #4F46E5;
+    --fm-primary-dark: #4338CA;
+    --fm-primary-tint: #EEF2FF;
+    --fm-primary-border: #C7D2FE;
+
+    --fm-bg: #F7F8FA;
+    --fm-surface: #FFFFFF;
+    --fm-border: #E4E7EC;
+    --fm-border-strong: #C9CED6;
+
+    --fm-success: #15803D;
+    --fm-success-bg: #F0FDF4;
+    --fm-success-border: #BBF7D0;
+
+    --fm-warning: #B45309;
+    --fm-warning-bg: #FFFBEB;
+    --fm-warning-border: #FDE68A;
+
+    --fm-danger: #DC2626;
+    --fm-danger-bg: #FEF2F2;
+    --fm-danger-border: #FCA5A5;
+
+    --fm-radius-sm: 10px;
+    --fm-radius-md: 14px;
+    --fm-radius-lg: 16px;
+    --fm-shadow-sm: 0 4px 14px rgba(11, 18, 32, 0.05);
+    --fm-shadow-md: 0 8px 24px rgba(11, 18, 32, 0.07);
+}
+
+/* =========================
+   BASE
+   ========================= */
+
+html, body, [class*="css"] {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.stApp {
+    background: var(--fm-bg);
+    color: var(--fm-ink);
+}
+
+#MainMenu,
+footer {
+    visibility: hidden;
+}
+
+header {
+    visibility: visible;
+    background: transparent !important;
+}
+
+.block-container {
+    max-width: 1400px;
+    padding-top: 1.5rem;
+    padding-bottom: 4rem;
+    padding-left: 3.5rem;
+    padding-right: 3.5rem;
+}
+
+@media (max-width: 900px) {
+    .block-container {
+        padding-left: 1.25rem;
+        padding-right: 1.25rem;
+    }
+}
+
+hr {
+    border-color: var(--fm-border) !important;
+    margin-top: 18px;
+    margin-bottom: 18px;
+}
+
+/* =========================
+   BRAND / WORDMARK
+   (shared by navbar, sidebar, auth page)
+   ========================= */
+
+.fm-wordmark {
+    font-family: 'Space Grotesk', 'Inter', sans-serif;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    color: var(--fm-ink);
+}
+
+.fm-wordmark-badge {
+    display: inline-block;
+    background: var(--fm-primary);
+    color: #FFFFFF;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.46em;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 3px 8px;
+    border-radius: 999px;
+    vertical-align: middle;
+    margin-left: 7px;
+    position: relative;
+    top: -0.05em;
+}
+
+/* =========================
+   SHARED TYPOGRAPHY SCALE
+   ========================= */
+
+.fm-page-title {
+    color: var(--fm-ink);
+    font-size: 32px;
+    font-weight: 750;
+    letter-spacing: -0.7px;
+    margin-bottom: 4px;
+}
+
+.fm-page-subtitle {
+    color: var(--fm-text-secondary);
+    font-size: 15.5px;
+    margin-bottom: 26px;
+}
+
+.fm-section-title {
+    color: var(--fm-ink);
+    font-size: 32px;
+    font-weight: 750;
+    text-align: center;
+    letter-spacing: -0.7px;
+    margin-top: 50px;
+    margin-bottom: 8px;
+}
+
+.fm-section-subtitle {
+    color: var(--fm-text-secondary);
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.6;
+    max-width: 620px;
+    margin: 0 auto 32px auto;
+}
+
+.fm-section-heading {
+    color: var(--fm-ink);
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+/* =========================
+   FORM ELEMENTS
+   ========================= */
+
+.stTextInput input,
+.stNumberInput input,
+.stTextArea textarea,
+.stSelectbox div[data-baseweb="select"] > div {
+    background: var(--fm-surface) !important;
+    color: var(--fm-ink) !important;
+    border: 1px solid var(--fm-border-strong) !important;
+    border-radius: var(--fm-radius-sm) !important;
+}
+
+.stTextInput input,
+.stNumberInput input {
+    height: 46px !important;
+}
+
+.stTextInput input::placeholder,
+.stNumberInput input::placeholder,
+.stTextArea textarea::placeholder {
+    color: var(--fm-text-muted) !important;
+}
+
+.stTextInput input:focus,
+.stNumberInput input:focus,
+.stTextArea textarea:focus {
+    border-color: var(--fm-primary) !important;
+    box-shadow: 0 0 0 1px var(--fm-primary) !important;
+}
+
+.stTextInput label,
+.stNumberInput label,
+.stSelectbox label,
+.stTextArea label {
+    color: var(--fm-text) !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+}
+
+/* =========================
+   BUTTONS
+   ========================= */
+
+.stButton > button {
+    border-radius: var(--fm-radius-sm) !important;
+    font-weight: 600 !important;
+    min-height: 46px !important;
+    transition: all 0.15s ease;
+}
+
+.stButton > button[kind="primary"],
+.stButton > button:not([kind="secondary"]):not([kind="primary"]) {
+    background: var(--fm-primary) !important;
+    border: 1px solid var(--fm-primary) !important;
+    color: #FFFFFF !important;
+}
+
+.stButton > button[kind="primary"]:hover,
+.stButton > button:not([kind="secondary"]):not([kind="primary"]):hover {
+    background: var(--fm-primary-dark) !important;
+    border-color: var(--fm-primary-dark) !important;
+}
+
+.stButton > button[kind="secondary"] {
+    background: var(--fm-surface) !important;
+    border: 1px solid var(--fm-border-strong) !important;
+    color: var(--fm-ink) !important;
+}
+
+.stButton > button[kind="secondary"]:hover {
+    background: var(--fm-bg) !important;
+    border-color: var(--fm-text-secondary) !important;
+}
+
+/* Download button shares the same look */
+
+.stDownloadButton > button {
+    border-radius: var(--fm-radius-sm) !important;
+    font-weight: 600 !important;
+    min-height: 46px !important;
+    background: var(--fm-primary) !important;
+    border: 1px solid var(--fm-primary) !important;
+    color: #FFFFFF !important;
+}
+
+.stDownloadButton > button:hover {
+    background: var(--fm-primary-dark) !important;
+    border-color: var(--fm-primary-dark) !important;
+}
+
+/* =========================
+   CARDS (shared surface system)
+   ========================= */
+
+.fm-card {
+    background: var(--fm-surface);
+    border: 1px solid var(--fm-border);
+    border-radius: var(--fm-radius-lg);
+    padding: 22px;
+    box-shadow: var(--fm-shadow-sm);
+}
+
+div[data-testid="stVerticalBlockBorderWrapper"] {
+    background: var(--fm-surface) !important;
+    border: 1px solid var(--fm-border) !important;
+    border-radius: var(--fm-radius-lg) !important;
+    padding: 6px !important;
+    box-shadow: var(--fm-shadow-sm);
+}
+
+.fm-kpi-card {
+    background: var(--fm-surface);
+    border: 1px solid var(--fm-border);
+    border-radius: var(--fm-radius-lg);
+    padding: 20px;
+    box-shadow: var(--fm-shadow-sm);
+    transition: all 0.15s ease;
+}
+
+.fm-kpi-card:hover {
+    border-color: var(--fm-primary-border);
+    box-shadow: var(--fm-shadow-md);
+}
+
+.fm-kpi-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.fm-kpi-icon {
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+.fm-kpi-title {
+    color: var(--fm-text-secondary);
+    font-size: 12.5px;
+    font-weight: 650;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    margin-bottom: 12px;
+}
+
+.fm-kpi-value {
+    color: var(--fm-ink);
+    font-size: 25px;
+    font-weight: 750;
+    letter-spacing: -0.4px;
+}
+
+/* Display-only status badges (map to existing computed values) */
+.fm-badge-success { color: var(--fm-success); }
+.fm-badge-warning { color: var(--fm-warning); }
+.fm-badge-danger  { color: var(--fm-danger); }
+
+/* =========================
+   STREAMLIT NATIVE WIDGETS
+   ========================= */
+
+div[data-testid="stMetric"] {
+    background: var(--fm-surface) !important;
+    border: 1px solid var(--fm-border) !important;
+    border-radius: var(--fm-radius-lg) !important;
+    padding: 18px !important;
+}
+
+div[data-testid="stMetric"] * {
+    color: var(--fm-ink) !important;
+}
+
+div[data-testid="stPlotlyChart"] {
+    background: var(--fm-surface);
+    border: 1px solid var(--fm-border);
+    border-radius: var(--fm-radius-lg);
+    padding: 10px;
+    box-shadow: var(--fm-shadow-sm);
+}
+
+.stProgress > div > div > div {
+    background: var(--fm-primary) !important;
+}
+
+[data-testid="stDataFrame"] {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--fm-border);
+}
+
+[data-testid="stChatMessage"] {
+    background: var(--fm-surface);
+    border: 1px solid var(--fm-border);
+    border-radius: var(--fm-radius-md);
+    margin-bottom: 10px;
+}
+
+[data-testid="stChatInput"] {
+    background: var(--fm-surface) !important;
+    border: 1px solid var(--fm-border-strong) !important;
+    border-radius: var(--fm-radius-sm) !important;
+}
+
+[data-testid="stChatInput"] textarea {
+    background: var(--fm-surface) !important;
+    color: var(--fm-ink) !important;
+}
+
+[data-testid="stChatInput"] textarea::placeholder {
+    color: var(--fm-text-muted) !important;
+}
+
+div[data-testid="stAlert"] {
+    border-radius: var(--fm-radius-md);
+    border: 1px solid var(--fm-border);
+}
