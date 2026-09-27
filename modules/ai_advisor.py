@@ -8,6 +8,7 @@ from database.database import conn
 import pandas as pd
 from models.savings_predictor import predict_savings
 
+
 USD_TO_INR = 95.8
 
 
@@ -97,6 +98,26 @@ def ai_advisor_page():
         padding: 22px;
         margin-top: 8px;
         box-shadow: 0 5px 18px rgba(11, 18, 32, 0.04);
+    }
+
+    .stChatMessage {
+        color: #0B1220 !important;
+    }
+
+    .stChatMessage p,
+    .stChatMessage li,
+    .stChatMessage span,
+    .stChatMessage div {
+        color: #0B1220 !important;
+    }
+
+    .stChatMessage strong,
+    .stChatMessage b {
+        color: #0B1220 !important;
+    }
+
+    .stChatMessage code {
+        color: #0B1220 !important;
     }
 
     </style>
@@ -382,6 +403,7 @@ Do not use dollars or USD unless the user specifically asks for another currency
         "SELECT * FROM expenses ORDER BY id DESC",
         conn
     )
+
 
     if len(expense_df) >= 5:
 
