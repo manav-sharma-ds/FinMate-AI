@@ -1,4 +1,5 @@
 import os
+import streamlit as st
 import pickle
 import faiss
 from sentence_transformers import SentenceTransformer
@@ -7,8 +8,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+api_key = os.getenv("GROQ_API_KEY")
+
+if not api_key and "GROQ_API_KEY" in st.secrets:
+    api_key = st.secrets["GROQ_API_KEY"]
+
 client = Groq(
-    api_key=os.getenv("GROQ_API_KEY")
+    api_key=api_key
 )
 
 index = faiss.read_index("rag/faiss_index.bin")
