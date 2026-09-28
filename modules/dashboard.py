@@ -28,12 +28,6 @@ def card(title, value, icon):
 
 def dashboard_page():
 
-    # ==================================================
-    # PAGE-SPECIFIC STYLING
-    # (kpi cards, headings, metric, plotly, progress come
-    # from the global stylesheet)
-    # ==================================================
-
     st.markdown("""
 <style>
 
@@ -169,13 +163,13 @@ Monitor your financial health and spending in one place.
 
 
     # ==================================================
-    # FINANCIAL HEALTH
+    # FINANCIAL HEALTH PROFILE
     # ==================================================
 
     with right:
 
         st.markdown(
-            '<div class="fm-section-heading">Financial Health</div>',
+            '<div class="fm-section-heading">Financial Health Profile</div>',
             unsafe_allow_html=True
         )
 
@@ -230,8 +224,25 @@ Monitor your financial health and spending in one place.
             else:
                 health_status = "Needs improvement"
 
-            # Display-only colour mapping of the EXISTING health_status
-            # value. Does not affect the score or status calculation.
+            if savings_ratio >= 20:
+                savings_status = "Healthy savings rate"
+            elif savings_ratio >= 10:
+                savings_status = "Moderate savings rate"
+            else:
+                savings_status = "Low savings rate"
+
+            if expense_ratio <= 50:
+                expense_status = "Controlled spending"
+            elif expense_ratio <= 75:
+                expense_status = "Moderate spending"
+            else:
+                expense_status = "High spending"
+
+            if budget > 0 and expenses <= budget:
+                budget_status = "Within budget"
+            else:
+                budget_status = "Budget exceeded"
+
             if health_status == "Strong financial position":
                 status_class = "fm-badge-success"
             elif health_status == "Moderate financial position":
@@ -252,10 +263,44 @@ Monitor your financial health and spending in one place.
 
             st.markdown(
                 f"""<div class="health-card">
+<div class="health-label">Savings Rate</div>
+<div class="health-value">{savings_ratio:.1f}%</div>
+<div class="health-description">
+{savings_status}
+</div>
+</div>""",
+                unsafe_allow_html=True
+            )
+
+            st.write("")
+
+            st.markdown(
+                f"""<div class="health-card">
 <div class="health-label">Expense Ratio</div>
 <div class="health-value">{expense_ratio:.1f}%</div>
 <div class="health-description">
-Percentage of income spent on expenses
+{expense_status}
+</div>
+</div>""",
+                unsafe_allow_html=True
+            )
+
+            st.write("")
+
+            budget_utilization = (
+                (expenses / budget) * 100
+                if budget > 0
+                else 0
+            )
+
+            st.markdown(
+                f"""<div class="health-card">
+<div class="health-label">Budget Status</div>
+<div class="health-value" style="font-size:22px;">
+{budget_status}
+</div>
+<div class="health-description">
+Budget utilization: {budget_utilization:.1f}%
 </div>
 </div>""",
                 unsafe_allow_html=True
@@ -264,5 +309,5 @@ Percentage of income spent on expenses
             st.write("")
 
             st.progress(
-                min(int(expense_ratio), 100)
+                min(int(budget_utilization), 100)
             )
